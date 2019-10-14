@@ -17,10 +17,18 @@ TRational operator / (const TRational& d1, const TRational& d2) {
 TRational operator * (const TRational& d1, const TRational& d2) {
 	return TRational(d1.a * d2.a, d1.b * d2.b);
 }
+std::ostream& operator << (std::ostream& out, const TRational& Rational) {
+	out << Rational.a << "/" << Rational.b;
+}
+std::istream& operator >> (std::istream &in,  TRational& Rational) {
+	char tmp;
+	in >> Rational.a >> tmp >> Rational.b;
 
+}
 
-bool operator > (const TRational& d1, const TRational& d2) {
+bool operator > (const TRational& d1,  const TRational& d2) {
 	if (d1.a * d2.b > d1.b * d2.a) {
+
 		return true;
 	}
 	return false;
@@ -31,49 +39,86 @@ bool operator > (const TRational& d1, const TRational& d2) {
  	}
  	return false;
  }
+ bool operator < (const TRational& d1, const TRational& d2) {
+ 	if (d1.a * d2.b < d1.b * d2.a) {
+ 		return true;
+ 	}
+ 	return false;
+ }
 
-void TRational::Add(const TRational &d1, const TRational &d2) {
-	*this = d1 + d2;
-	this->Reduce();
+TRational TRational::Add(const TRational &d1, const TRational &d2) const{
+	TRational tmp;
+	tmp = d1 + d2;
+	tmp.Reduce();
+	return tmp;
+	 
+	
 }
-void TRational::Div(const TRational &d1, const TRational &d2) {
-	*this = d1 / d2;
-	this->Reduce();
+TRational TRational::Div(const TRational &d1, const TRational &d2) const{
+	TRational tmp;
+	tmp = d1 / d2;
+	tmp.Reduce();
+	return tmp;
 }
-void TRational::Sub(const TRational &d1, const TRational &d2) {
-	*this = d1 - d2;
-	this->Reduce();
+TRational TRational::Sub(const TRational &d1, const TRational &d2) const{
+	TRational tmp;
+	tmp = d1 - d2;
+	tmp.Reduce();
+	return tmp;
 }
-void TRational::Mul(const TRational &d1, const TRational &d2) {
-	*this = d1 * d2;
-	this->Reduce();
+TRational TRational::Mul(const TRational &d1, const TRational &d2) const{
+	TRational tmp;
+	tmp = d1 * d2;
+	tmp.Reduce();
+	return tmp;
 }
 
-void TRational::Compare(const TRational &d1) {
-	if (*this > d1) {
-		std::cout << this->a << "/" << this->b << " > " << d1.a << "/" << d1.b << "\n";
-		return;
-	} else if (*this == d1) {
-		std::cout << this->a << "/" << this->b << " == " << d1.a << "/" << d1.b << "\n";
-		return;
+int TRational::Compare(const TRational &d1) {
+	if (this->b == 0) {
+		return 2;
+	} else if (d1.b == 0) {
+		return 1;
 	}
-	std::cout << this->a << "/" << this->b << " < " << d1.a << "/" << d1.b << "\n";
+	if (*this > d1) {
+		return 1;
+	} else if (*this == d1) {
+		return 0;
+	} else {
+		return 2;
+	}
 }
 
 
 void TRational::Reduce() {
-	int x = abs(a);
-	int y = abs(b);
+	int x = abs(this->a);
+	int y = abs(this->b);
 	if (x == 0 || y == 0) {
-		std::cout << 0 <<"\n";
 		return;
 	}
-	while (x != y) {
-		if (x < y) {
-			y -= x;
+	while (x != 0 && y != 0) {
+		if (x > y) {
+			x = x % y;
 		} else {
-			x -= y;
+			y = y % x;
 		}	
 	}
-	std::cout << a/x << "/" << b/x << "\n";
+	this->a = this->a / (x + y);
+	this->b = this->b / (x + y);
+}
+
+void TRational::Print() {
+	TRational tmp = *this;
+	if (tmp.b == 0) {
+		std::cout << " -nan\n";
+		return;
+	} else if (tmp.a == 0) {
+		std::cout << " 0\n";
+		return;
+	} else if (tmp.a < 0 and tmp.b < 0) {
+		tmp.a = (-1) * tmp.a;
+		tmp.b = (-1) * tmp.b;
+		std::cout << tmp << "\n";
+		return;
+	}
+	std::cout << tmp << "\n";
 }
