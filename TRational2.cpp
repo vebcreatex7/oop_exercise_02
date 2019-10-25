@@ -23,8 +23,8 @@ TRational& TRational::operator*= (unsigned long long num) {
 }
 
 TRational operator"" _xn(unsigned long long first) {
-	TRational P(1, 2);
-	P *= first;
+	TRational P(first, 2);
+
 	return P;
 }
 
@@ -86,7 +86,7 @@ TRational TRational::Mul(const TRational &d1, const TRational &d2) const{
 	return tmp;
 }
 
-int TRational::Compare(const TRational &d1) {
+int TRational::Compare(const TRational &d1) const{
 	if (this->b == 0) {
 		return 2;
 	} else if (d1.b == 0) {
@@ -102,7 +102,7 @@ int TRational::Compare(const TRational &d1) {
 }
 
 
-void TRational::Reduce() {
+void TRational::Reduce(){
 	int x = abs(this->a);
 	int y = abs(this->b);
 	if (x == 0 || y == 0) {
@@ -119,7 +119,7 @@ void TRational::Reduce() {
 	this->b = this->b / (x + y);
 }
 
-void TRational::Print() {
+void TRational::Print() const{
 	TRational tmp = *this;
 	if (tmp.b == 0) {
 		std::cout << " -nan\n";

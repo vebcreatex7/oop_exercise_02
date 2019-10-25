@@ -13,9 +13,9 @@ int main()
 	(d1.Add(d1, d2)).Print();
 	std::cout << "Sub = ";
 	(d1.Sub(d1, d2)).Print();
-	std::cout << "Div = ";
-	(d1.Mul(d1, d2)).Print();
 	std::cout << "Mul = ";
+	(d1.Mul(d1, d2)).Print();
+	std::cout << "Div = ";
 	(d1.Div(d1, d2)).Print();
 	if (d1.Compare(d2) == 1) {
 		std::cout << d1 << " > " << d2 << "\n";
