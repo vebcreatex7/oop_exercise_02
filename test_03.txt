@@ -1,0 +1,6 @@
+1/0 2/3
+Add =  -nan
+Sub =  -nan
+Div =  -nan
+Mul =  -nan
+1/0 < 2/3
