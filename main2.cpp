@@ -9,14 +9,11 @@ int main()
 {
 	TRational d1, d2, c;
 	std::cin >> d1 >> d2;
-	std::cout << "Add = ";
-	(d1.Add(d1, d2)).Print();
-	std::cout << "Sub = ";
-	(d1.Sub(d1, d2)).Print();
-	std::cout << "Mul = ";
-	(d1.Mul(d1, d2)).Print();
-	std::cout << "Div = ";
-	(d1.Div(d1, d2)).Print();
+	std::cout << "Add = " << d1 + d2 << std::endl;
+	std::cout << "Sub = " << d1 - d2 << std::endl;
+	std::cout << "Mul = " << d1 * d2 << std::endl;
+	std::cout << "Div = " << d1 / d2 << std::endl;
+	
 	if (d1.Compare(d2) == 1) {
 		std::cout << d1 << " > " << d2 << "\n";
 	} else if (d1.Compare(d2) == 0) {

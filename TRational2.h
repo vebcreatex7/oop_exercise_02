@@ -27,10 +27,6 @@ public:
 	friend std::istream& operator >> (std::istream &in, TRational& Rational);
 	
 	TRational& operator *= (unsigned long long num);
-	TRational Add(const TRational &d1, const TRational &d2) const;
-	TRational Div(const TRational &d1, const TRational &d2) const;
-	TRational Sub(const TRational &d1, const TRational &d2) const;
-	TRational Mul(const TRational &d1, const TRational &d2) const;
 	int Compare(const TRational &d1) const;
 	void Reduce();
 	void Print() const;

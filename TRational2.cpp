@@ -1,19 +1,27 @@
 #include "TRational2.h"
 
 TRational operator + (const TRational& d1, const TRational& d2) {
-	return TRational(d1.a * d2.b + d1.b * d2.a, d1.b * d2.b);
+	TRational tmp(d1.a * d2.b + d1.b * d2.a, d1.b * d2.b);
+	tmp.Reduce();
+	return tmp;
 }
 
 TRational operator - (const TRational& d1, const TRational& d2) {
-	return TRational(d1.a * d2.b - d1.b * d2.a, d1.b * d2.b);
+	TRational tmp(d1.a * d2.b - d1.b * d2.a, d1.b * d2.b);
+	tmp.Reduce();
+	return tmp;
 }
 
 TRational operator / (const TRational& d1, const TRational& d2) {
-	return TRational(d1.a * d2.b, d1.b * d2.a);
+	TRational tmp(d1.a * d2.b, d1.b * d2.a);
+	tmp.Reduce();
+	return tmp;
 }
 
 TRational operator * (const TRational& d1, const TRational& d2) {
-	return TRational(d1.a * d2.a, d1.b * d2.b);
+	TRational tmp(d1.a * d2.a, d1.b * d2.b);
+	tmp.Reduce();
+	return tmp;
 }
 
 TRational& TRational::operator*= (unsigned long long num) {
@@ -59,32 +67,6 @@ bool operator > (const TRational& d1,  const TRational& d2) {
  }
 
 
-TRational TRational::Add(const TRational &d1, const TRational &d2) const{
-	TRational tmp;
-	tmp = d1 + d2;
-	tmp.Reduce();
-	return tmp;
-	 
-	
-}
-TRational TRational::Div(const TRational &d1, const TRational &d2) const{
-	TRational tmp;
-	tmp = d1 / d2;
-	tmp.Reduce();
-	return tmp;
-}
-TRational TRational::Sub(const TRational &d1, const TRational &d2) const{
-	TRational tmp;
-	tmp = d1 - d2;
-	tmp.Reduce();
-	return tmp;
-}
-TRational TRational::Mul(const TRational &d1, const TRational &d2) const{
-	TRational tmp;
-	tmp = d1 * d2;
-	tmp.Reduce();
-	return tmp;
-}
 
 int TRational::Compare(const TRational &d1) const{
 	if (this->b == 0) {
