@@ -38,11 +38,11 @@ TRational operator"" _xn(unsigned long long first) {
 
 
 std::ostream& operator << (std::ostream& out, const TRational& Rational) {
-	out << Rational.a << "/" << Rational.b;
+	return out << Rational.a << "/" << Rational.b;
 }
 std::istream& operator >> (std::istream &in,  TRational& Rational) {
 	char tmp;
-	in >> Rational.a >> tmp >> Rational.b;
+	return in >> Rational.a >> tmp >> Rational.b;
 
 }
 
