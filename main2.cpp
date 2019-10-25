@@ -1,8 +1,13 @@
 #include "TRational2.h"
+#include <sstream>
+#include <iostream>
+#include <cmath>
+
+
 
 int main()
 {
-	TRational d1, d2;
+	TRational d1, d2, c;
 	std::cin >> d1 >> d2;
 	std::cout << "Add = ";
 	(d1.Add(d1, d2)).Print();
@@ -19,5 +24,10 @@ int main()
 	} else if (d1.Compare(d2) == 2) {
 		std::cout << d1 << " < " << d2 << "\n";
 	}
+	c = 3_xn;
+
+	std::cout << c;
+	
+
 
 }

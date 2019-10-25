@@ -1,7 +1,5 @@
 #include "TRational2.h"
 
-TRational::TRational(int m_a, int m_b) : a(m_a), b(m_b) {}
-
 TRational operator + (const TRational& d1, const TRational& d2) {
 	return TRational(d1.a * d2.b + d1.b * d2.a, d1.b * d2.b);
 }
@@ -17,6 +15,20 @@ TRational operator / (const TRational& d1, const TRational& d2) {
 TRational operator * (const TRational& d1, const TRational& d2) {
 	return TRational(d1.a * d2.a, d1.b * d2.b);
 }
+
+TRational& TRational::operator*= (unsigned long long num) {
+	a = a * num;
+	b = b * 1;
+	return *this;
+}
+
+TRational operator"" _xn(unsigned long long first) {
+	TRational P(1, 2);
+	P *= first;
+	return P;
+}
+
+
 std::ostream& operator << (std::ostream& out, const TRational& Rational) {
 	out << Rational.a << "/" << Rational.b;
 }
@@ -45,6 +57,7 @@ bool operator > (const TRational& d1,  const TRational& d2) {
  	}
  	return false;
  }
+
 
 TRational TRational::Add(const TRational &d1, const TRational &d2) const{
 	TRational tmp;
